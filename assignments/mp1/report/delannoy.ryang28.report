@@ -1,0 +1,41 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [5 / 5]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 5
+
+Functional_Programming-recursion_basic-code_ocaml_autograded-delannoy/grader program output
+---------------------
+
+
+[1 / 1] delannoy (1, 2) (correct)
+[1 / 1] delannoy (3, 3) (correct)
+[1 / 1] delannoy (0, 0) (correct)
+[1 / 1] delannoy (0, 3) (correct)
+[1 / 1] delannoy (3, 0) (correct)
+
+Total: [5 / 5]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for delannoy here. *)
+let rec delannoy (m, n) = match (m, n) with (0,0)->1
+											|(m,0)->1
+											|(0,n)->1
+											|(m,n)->delannoy(m-1, n)+delannoy(m, n-1)+delannoy(m-1, n-1)
+Stdout
+----------------------------------------------------
+
+

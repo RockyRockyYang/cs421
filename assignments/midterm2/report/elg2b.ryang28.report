@@ -1,0 +1,44 @@
+
+midterm2 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [6 / 6]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 6
+
+Lexing_and_Parsing-parseTrees-parseTreeEditor_autograded-elg2b/grader program output
+---------------------
+
+
+Student selected "There is no parse tree for this string:", which is correct.
+
+
+Total: [6 / 6]
+Extra: [0 / 0]
+
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+Student selected "There is no parse tree for this string:", which is correct.
+
+
+Total: [6 / 6]
+Extra: [0 / 0]
+
+{"noParseTree":true,"parseTree":{}}
+Stdout
+----------------------------------------------------
+
+Student selected "There is no parse tree for this string:", which is correct.
+
+
+

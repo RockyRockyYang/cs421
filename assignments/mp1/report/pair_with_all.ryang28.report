@@ -1,0 +1,37 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Functional_Programming-recursion_basic_patternMatching_list-code_ocaml_autograded-pair_with_all/grader program output
+---------------------
+
+
+[1 / 1] pair_with_all 1 ["a"; "b"; "c"] (correct)
+[1 / 1] pair_with_all "nope" [] (correct)
+[1 / 1] pair_with_all true [1; 2] (correct)
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for pair_with_all here. *)
+let rec pair_with_all x l = match l with []->[]
+										| (h::hs)->[(x,h)] @ (pair_with_all x hs)
+Stdout
+----------------------------------------------------
+
+

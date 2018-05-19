@@ -1,0 +1,40 @@
+
+ml2 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [6 / 6]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 6
+
+Functional_Programming-recursion_forwardRecursion_complex-code_ocaml_autograded-rle/grader program output
+---------------------
+
+
+[1 / 1] rle [1;2;2;3;3;3] (correct)
+[1 / 1] rle ["hi";"hi";"hi";"hi";"everyone"] (correct)
+[1 / 1] rle [4.0;0.0;0.0] (correct)
+[3 / 3] forward_recursion_check file "rle" (correct)
+
+Total: [6 / 6]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for rle here. *)
+let rec rle lst = match lst with []->[]
+			|(x::xs)->let ret = rle xs in match ret with []->[(x,1)]
+							|((a,b)::zs)->if x=a then (a,b+1)::zs
+									else (x,1)::(a,b)::zs
+Stdout
+----------------------------------------------------
+
+

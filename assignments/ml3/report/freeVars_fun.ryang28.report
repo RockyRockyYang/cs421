@@ -1,0 +1,51 @@
+
+ml3 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Functional_Programming-adts_CPSTransformation_freeVariables-code_ocaml_autograded-fun/grader program output
+---------------------
+
+
+[1 / 1] freeVarsInExp_sol (LetInExp("x", VarExp "y", VarExp "x")) (correct)
+[1 / 1] freeVarsInExp_sol (LetInExp("x", VarExp "x", VarExp "x")) (correct)
+[1 / 1] freeVarsInExp_sol (LetInExp("x", VarExp "y", VarExp "y")) (correct)
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+open Common
+open Plsolution
+(* Leave these line here! *)
+(* Put code for fun at the bottoem, after removing the raise. *)
+let rec freeVarsInExp exp =
+  match exp
+  with VarExp x -> freeVarsInVarExp x freeVarsInExp
+    | ConstExp c -> freeVarsInConstExp c freeVarsInExp
+    | MonOpAppExp (m,e) -> freeVarsInMonOpAppExp (m,e) freeVarsInExp
+    | BinOpAppExp (b,e1,e2) -> freeVarsInBinOpAppExp (b,e1,e2) freeVarsInExp
+    | IfExp (e1,e2,e3) -> freeVarsInIfExp (e1,e2,e3) freeVarsInExp
+    | AppExp (e1,e2) -> freeVarsInAppExp (e1,e2) freeVarsInExp
+    | LetInExp (x,e1,e2) -> freeVarsInLetInExp (x,e1,e2) freeVarsInExp 
+    | LetRecInExp (f,x,e1,e2) -> freeVarsInLetRecInExp (f,x,e1,e2) freeVarsInExp
+(* Remove the raise and put your code where the raise is now. *) 
+    | FunExp (f,e) -> List.filter(fun y->not(y=f)) (freeVarsInExp e)
+
+Stdout
+----------------------------------------------------
+
+

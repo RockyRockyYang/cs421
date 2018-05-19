@@ -1,0 +1,49 @@
+
+midterm1-code grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [10 / 10]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 10
+
+Functional_Programming-adts_propLogic_syntax-code_ocaml_autograded-propVars/grader program output
+---------------------
+
+
+[1 / 1] propVars (True) (correct)
+[1 / 1] propVars (False) (correct)
+[1 / 1] propVars (PropVar "x") (correct)
+[1 / 1] propVars (Not (PropVar "y")) (correct)
+[1 / 1] propVars_sol (And (PropVar "v", PropVar "dv")) (correct)
+[1 / 1] propVars_sol (Or (PropVar "b", PropVar "db")) (correct)
+[1 / 1] propVars_sol (Implies (PropVar "a", PropVar "da")) (correct)
+[3 / 3] propVars_sol (And (True, Implies(Or(PropVar "a", False),And(Implies(True, PropVar "b"), False)))) (correct)
+
+Total: [10 / 10]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+open Common
+(* Put code for let at the bottom, after removing the raise. *)
+let rec propVars prop = match prop with True->[]
+				| False->[]
+				| PropVar x->[x]
+				| Not x-> propVars x
+				| And (p1,p2)->(propVars p1)@(propVars p2)
+				| Or (p1,p2)->(propVars p1)@(propVars p2)
+				| Implies (p1,p2)->(propVars p1)@(propVars p2)
+
+Stdout
+----------------------------------------------------
+
+

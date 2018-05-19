@@ -1,0 +1,50 @@
+
+midterm1-code grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [2 / 2]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 2
+
+Functional_Programming-adts_CPSTransformation_freeVariables-code_ocaml_autograded-if/grader program output
+---------------------
+
+
+[1 / 1] freeVarsInExp_sol (IfExp(VarExp "a",VarExp "b",VarExp "c")) (correct)
+[1 / 1] freeVarsInExp_sol (IfExp(AppExp(VarExp "a",VarExp "b"),VarExp "c",VarExp "f")) (correct)
+
+Total: [2 / 2]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+open Common
+open Plsolution
+(* Leave these lines here! *)
+(* Put code for let at the bottom, after removing the raise. *)
+let rec freeVarsInExp exp =
+  match exp
+  with VarExp x -> freeVarsInVarExp x freeVarsInExp
+    | ConstExp c -> freeVarsInConstExp c freeVarsInExp
+    | MonOpAppExp (m,e) -> freeVarsInMonOpAppExp (m,e) freeVarsInExp
+    | BinOpAppExp (b,e1,e2) -> freeVarsInBinOpAppExp (b,e1,e2) freeVarsInExp
+    | AppExp (e1,e2) -> freeVarsInAppExp (e1,e2) freeVarsInExp
+    | FunExp (f,e) -> freeVarsInFunExp (f,e) freeVarsInExp
+    | LetRecInExp (f,x,e1,e2) -> freeVarsInLetRecInExp (f,x,e1,e2) freeVarsInExp
+    | LetInExp (x,e1,e2) -> freeVarsInLetInExp (x,e1,e2) freeVarsInExp 
+(* Remove the raise and put your code where the raise is now. *) 
+    | IfExp (e1,e2,e3) -> (freeVarsInExp e1)@(freeVarsInExp e2)@(freeVarsInExp e3)
+
+Stdout
+----------------------------------------------------
+
+

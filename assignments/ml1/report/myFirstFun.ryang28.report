@@ -1,0 +1,36 @@
+
+ml1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Functional_Programming-basic_function_int_arith-code_ocaml_autograded-myFirstFun/grader program output
+---------------------
+
+
+[1 / 1] myFirstFun 17 (correct)
+[1 / 1] myFirstFun 0 (correct)
+[1 / 1] myFirstFun (-1) (correct)
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for myFirstFun here. *)
+let myFirstFun n = (n+3)*4
+Stdout
+----------------------------------------------------
+
+

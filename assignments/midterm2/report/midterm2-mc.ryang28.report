@@ -1,0 +1,75 @@
+midterm1-mc grade report for ryang28
+================================
+Last Updated: Sat, 25 Nov 2017 20:11:16
+
+================================
+= Point Breakdown
+================================
+
+5 of 5 points for 	Lexing_and_Parsing-disambigGrammars-multipleTF_autograded-grammar_d
+4 of 5 points for 	Lexing_and_Parsing-disambigGrammars-multipleTF_autograded-grammar_e
+5 of 5 points for 	Lexing_and_Parsing-disambigGrammars-multipleTF_autograded-grammar_f
+5 of 5 points for 	Typing_and_Type_Systems-polymorphicTypeDerivations-multipleTF_autograded-bayA01
+5 of 5 points for 	Typing_and_Type_Systems-polymorphicTypeDerivations-multipleTF_autograded-bayA02
+5 of 5 points for 	Typing_and_Type_Systems-polymorphicTypeDerivations-multipleTF_autograded-bayB01
+
+Total Score: 29 of 30 points
+
+Total                 => 29
+================================
+= Your Answers
+================================
+
+Your answer for Lexing_and_Parsing-disambigGrammars-multipleTF_autograded-grammar_d was:     
+{
+    "diambig_a_1": "True", 
+    "diambig_d_2": "True", 
+    "diambig_d_3": "False", 
+    "diambig_d_4": "False", 
+    "diambig_d_5": "True"
+}
+
+Your answer for Lexing_and_Parsing-disambigGrammars-multipleTF_autograded-grammar_e was:     
+{
+    "diambig_e_1": "True", 
+    "diambig_e_2": "True", 
+    "diambig_e_3": "True", 
+    "diambig_e_4": "False", 
+    "diambig_e_5": "False"
+}
+
+Your answer for Lexing_and_Parsing-disambigGrammars-multipleTF_autograded-grammar_f was:     
+{
+    "diambig_f_1": "True", 
+    "diambig_f_2": "True", 
+    "diambig_f_3": "False", 
+    "diambig_f_4": "False", 
+    "diambig_f_5": "True"
+}
+
+Your answer for Typing_and_Type_Systems-polymorphicTypeDerivations-multipleTF_autograded-bayA01 was:     
+{
+    "bayA01-1": "True", 
+    "bayA01-2": "True", 
+    "bayA01-3": "True", 
+    "bayA01-4": "False", 
+    "bayA01-5": "True"
+}
+
+Your answer for Typing_and_Type_Systems-polymorphicTypeDerivations-multipleTF_autograded-bayA02 was:     
+{
+    "bayA02-1": "True", 
+    "bayA02-2": "False", 
+    "bayA02-3": "True", 
+    "bayA02-4": "True", 
+    "bayA02-5": "False"
+}
+
+Your answer for Typing_and_Type_Systems-polymorphicTypeDerivations-multipleTF_autograded-bayB01 was:     
+{
+    "bayB01-1": "True", 
+    "bayB01-2": "True", 
+    "bayB01-3": "False", 
+    "bayB01-4": "False", 
+    "bayB01-5": "True"
+}

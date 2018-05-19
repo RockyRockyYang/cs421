@@ -1,0 +1,46 @@
+
+midterm1-code grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [12 / 12]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 12
+
+Functional_Programming-recursion_tailRecursion_fold_left-code_ocaml_autograded-all_nonneg/grader program output
+---------------------
+
+
+[1 / 1] all_nonneg [4; 7; -3; 5] (correct)
+[1 / 1] all_nonneg [] (correct)
+[1 / 1] all_nonneg [4; 7; 5] (correct)
+[3 / 3] tail_recursion_check file "all_nonneg" (correct)
+[2 / 2] all_nonneg_sol [4; 7; -3; 5] (correct)
+[2 / 2] all_nonneg_sol [] (correct)
+[2 / 2] all_nonneg_sol [4; 7; 5] (correct)
+
+Total: [12 / 12]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for all_nonneg, all_nonneg_start and all_nonneg_step here. *)
+let rec all_nonneg l = 
+		let rec all_nonneg_aux acc l = match l with []->acc
+							|x::xs->all_nonneg_aux (x>=0 && acc) xs				 
+				in all_nonneg_aux true l
+
+let all_nonneg_start = true;; 
+let all_nonneg_step r x = if (x>=0 && r) then true else false
+Stdout
+----------------------------------------------------
+
+

@@ -1,0 +1,10 @@
+ml2 report for ryang28:
+
+                                                            SCORE     OUT OF
+Forward Recursion and fold_right
+   even_count_fr                                                6         6
+Tail Recursion and fold_left
+   even_count_tr                                                6         6
+More complex forward and tail recursion
+   rle                                                          5         5
+Total:                                                       17        17

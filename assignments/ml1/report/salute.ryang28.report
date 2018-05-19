@@ -1,0 +1,37 @@
+
+ml1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Functional_Programming-basic_function_conditional_string_printing-code_ocaml_autograded-salute/grader program output
+---------------------
+
+
+Hey, Ali! Give me five, man.Hey, Ali! Give me five, man.[1 / 1] salute "Ali" (correct)
+What's the low-down, man?What's the low-down, man?[1 / 1] salute "Elsa" (correct)
+Hey, ! Give me five, man.Hey, ! Give me five, man.[1 / 1] salute "" (correct)
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+open Common (* Leave this line here! *)
+(* Put code for salute below here. *)
+let salute name = if(name="Elsa")then print_string("What's the low-down, man?") else print_string("Hey, "^name^"! Give me five, man.")
+Stdout
+----------------------------------------------------
+
+

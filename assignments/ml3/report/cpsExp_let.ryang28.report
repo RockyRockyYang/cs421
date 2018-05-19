@@ -1,0 +1,52 @@
+
+ml3 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Functional_Programming-adts_CPSTransformation_cpsExp-code_ocaml_autograded-let/grader program output
+---------------------
+
+
+[1 / 1] cps_exp_sol (LetInExp ("x", ConstExp(IntConst 2), VarExp "x")) (ContVarCPS Kvar) (correct)
+[1 / 1] cps_exp_sol (LetInExp("x", VarExp "y", VarExp "x")) k1 (correct)
+[1 / 1] cps_exp_sol (LetInExp ("a", VarExp "a", LetInExp("b", AppExp(VarExp "a", VarExp "b"), BinOpAppExp(ConsOp, VarExp "b", AppExp(VarExp "a", VarExp "c"))))) k0 (correct)
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+open Common
+open Plsolution
+(* Leave these line here! *)
+(* Put code for let at the bottom, after removing the raise. *)
+let rec cps_exp e k = 
+   match e with 
+     VarExp x -> cps_exp_VarExp x k cps_exp
+   | ConstExp n -> cps_exp_ConstExp n k cps_exp
+   | MonOpAppExp (m, e) -> cps_exp_MonOpAppExp (m, e) k cps_exp
+   | BinOpAppExp (b, e1, e2) -> cps_exp_BinOpAppExp (b, e1, e2) k cps_exp
+   | IfExp (e1,e2,e3) -> cps_exp_IfExp (e1,e2,e3) k cps_exp
+   | AppExp (e1,e2) -> cps_exp_AppExp (e1,e2) k cps_exp
+   | FunExp (x,e) -> cps_exp_FunExp (x,e) k cps_exp
+   | LetRecInExp(f,x,e1,e2) -> cps_exp_LetRecInExp(f,x,e1,e2) k cps_exp
+(* Remove the raise and put your code where the raise is now. *) 
+   | LetInExp (x,e1,e2) -> let e2cps = cps_exp e2 k in
+			                cps_exp e1 (FnContCPS(x,e2cps))	
+
+Stdout
+----------------------------------------------------
+
+

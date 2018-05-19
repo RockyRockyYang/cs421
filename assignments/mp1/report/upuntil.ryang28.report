@@ -1,0 +1,39 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [4 / 4]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 4
+
+Functional_Programming-recursion_basic_patternMatching_list-code_ocaml_autograded-upuntil/grader program output
+---------------------
+
+
+[1 / 1] upuntil (fun _ -> true) (correct)
+[1 / 1] upuntil (fun _ -> false) (correct)
+[1 / 1] upuntil (fun n -> n * n > 200) (correct)
+[1 / 1] upuntil (fun n -> n / 2 > 48) (correct)
+
+Total: [4 / 4]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for upuntil here. *)
+let rec pro10helper f n = if(f n = false && n < 100) then [n]@(pro10helper f (n+1)) else [] 
+
+let rec upuntil f = pro10helper f 0
+Stdout
+----------------------------------------------------
+
+

@@ -1,0 +1,39 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [4 / 4]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 4
+
+Functional_Programming-recursion_complex_list-code_ocaml_autograded-insert_by/grader program output
+---------------------
+
+
+[1 / 1] insert_by (Pervasives.compare) 3 [1; 2; 4] (correct)
+[1 / 1] insert_by (fun s t -> Pervasives.compare t s) "y" ["z"; "x"; "y"; "a"; "y"; "z"] (correct)
+[1 / 1] insert_by (Pervasives.compare) 3 [] (correct)
+[1 / 1] insert_by (Pervasives.compare) 3 [0; 1; 2] (correct)
+
+Total: [4 / 4]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for insert_by here. *)
+let rec insert_by comp x l = match l with []->[]@[x]
+										| (h::hs)-> if ((comp h x)<>1) then [h]@(insert_by comp x hs) 
+														else [x]@l 
+Stdout
+----------------------------------------------------
+
+

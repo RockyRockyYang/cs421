@@ -1,0 +1,36 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Functional_Programming-recursion_basic-code_ocaml_autograded-ackermann/grader program output
+---------------------
+
+
+[1 / 1] ackermann 3 4 (correct)
+[1 / 1] ackermann 0 25 (correct)
+[1 / 1] ackermann 4 0 (correct)
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for ackermann here. *)
+let rec ackermann m n = if m=0 then n+1 else if m>0 && n=0 then ackermann (m-1) 1 else ackermann (m-1) (ackermann m (n-1))
+Stdout
+----------------------------------------------------
+
+

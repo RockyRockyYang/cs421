@@ -1,0 +1,59 @@
+
+midterm2 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [6 / 6]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 6
+
+Lexing_and_Parsing-parseTrees-parseTreeEditor_autograded-elg2d/grader program output
+---------------------
+
+
+  The starting non-terminal should be `T`
+     The tree uses the correct starting non-terminal.
+
+  Target string was `p0%1nn`
+     The tree represents the correct string.
+
+  Total points gathered from correct non-terminals:   6
+
+Total: [6 / 6]
+Extra: [0 / 0]
+
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+  The starting non-terminal should be `T`
+     The tree uses the correct starting non-terminal.
+
+  Target string was `p0%1nn`
+     The tree represents the correct string.
+
+  Total points gathered from correct non-terminals:   6
+
+Total: [6 / 6]
+Extra: [0 / 0]
+
+{"noParseTree":false,"parseTree":{"node1510958205999":{"to":["node1510958223313","node1510958215671"],"label":"T","meta":{"xPos":"182.75","yPos":"43.9"}},"node1510958215671":{"to":["node1510958256693","node1510958259841","node1510958261105"],"label":"E","meta":{"xPos":"309.75","yPos":"108.9"}},"node1510958223313":{"to":[],"label":"p","meta":{"xPos":"86.75","yPos":"111.9"}},"node1510958256693":{"to":["node1510958297646"],"label":"S","meta":{"xPos":"208.75","yPos":"176.9"}},"node1510958259841":{"to":[],"label":"%","meta":{"xPos":"352.75","yPos":"176.9"}},"node1510958261105":{"to":["node1510958313966","node1510958315902"],"label":"T","meta":{"xPos":"502.75","yPos":"175.9"}},"node1510958297646":{"to":[],"label":"0","meta":{"xPos":"153.75","yPos":"246.9"}},"node1510958313966":{"to":["node1510958337727","node1510958342903"],"label":"T","meta":{"xPos":"467.75","yPos":"244.9"}},"node1510958315902":{"to":[],"label":"n","meta":{"xPos":"636.75","yPos":"245.9"}},"node1510958337727":{"to":[],"label":"n","meta":{"xPos":"548.75","yPos":"319.9"}},"node1510958342903":{"to":["node1510958354646"],"label":"T","meta":{"xPos":"390.75","yPos":"318.9"}},"node1510958354646":{"to":[],"label":"1","meta":{"xPos":"333.75","yPos":"385.9"}}}}
+Stdout
+----------------------------------------------------
+
+  The starting non-terminal should be `T`
+     The tree uses the correct starting non-terminal.
+
+  Target string was `p0%1nn`
+     The tree represents the correct string.
+
+  Total points gathered from correct non-terminals:   6
+
+

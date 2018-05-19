@@ -1,0 +1,18 @@
+midterm2 report for ryang28:
+
+                                                            SCORE     OUT OF
+1. (30 pts) Multiple Choice Questions
+   midterm2-mc                                                 29        30
+2. (20 pts) Type Inference Implementation
+   gather_exp_ty_substitution_binopapp                         20        20
+3. (20 pts) Unification Algorithm Implementation
+   unify_eliminate                                             20        20
+4. (15 pts) Regular expressions and right regular grammars 
+   decimal                                                     15        15
+5. (15 pts) Parse Trees
+   elg1a                                                        3         3
+5. (15 pts) Parse Trees
+   elg2b                                                        6         6
+5. (15 pts) Parse Trees
+   elg2d                                                        6         6
+Total:                                                       99       100

@@ -1,0 +1,68 @@
+
+midterm2 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [15 / 15]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 15
+
+Lexing_and_Parsing-regExp_rightRegGrammar_wordProblems-modelcheck_ocaml_autograded-decimal/grader program output
+---------------------
+
+
+Your input is a regular expression:                         1
+Your input utilizes the correct alphabet:                   1
+The regular expression accepts the correct set of strings:  3
+
+---------------------------------------------------------------
+
+Your input is a right regular grammar:            3
+Your input contains some of the right language:   1
+There are no strings accepted that shouldn't be:  3
+
+There are no strings not accepted that should be: 3
+
+
+
+Total: [15 / 15]
+
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+1(0V1V2V9)*.(0V1V2V9)*9
+------------------------------------------------------
+A ::= 1B
+B ::= .C | 0B | 1B | 2B | 9B 
+C ::= 0C | 1C | 2C | 9C | 9
+
+Start Symbol = A
+------------------------------------------------------
+
+Stdout
+----------------------------------------------------
+
+Your input is a regular expression:                         1
+Your input utilizes the correct alphabet:                   1
+The regular expression accepts the correct set of strings:  3
+
+---------------------------------------------------------------
+
+Your input is a right regular grammar:            3
+Your input contains some of the right language:   1
+There are no strings accepted that shouldn't be:  3
+
+There are no strings not accepted that should be: 3
+
+
+
+

@@ -1,0 +1,40 @@
+= Unify {('a = G('c,'b,'c)), (F(G('b,'c,H('d)),'e) = F('a,'d)), (H(G('d,F('a,'e),'f)) = H(G('e,'f,F(G('c,H('e),H('d)),'e))))} o {} by Decompose on (F('a,F(G('b,'c,H('d)),'e)) = F(G('c,'b,'c),F('a,'d)))
+
+= Unify {('a = G('c,'b,'c)), (G('b,'c,H('d)) = 'a), ('e = 'd), (H(G('d,F('a,'e),'f)) = H(G('e,'f,F(G('c,H('e),H('d)),'e))))} o {} by Decompose on (F(G('b,'c,H('d)),'e) = F('a,'d))
+
+= Unify {('a = G('c,'b,'c)), ('a = G('b,'c,H('d))), ('e = 'd), (H(G('d,F('a,'e),'f)) = H(G('e,'f,F(G('c,H('e),H('d)),'e))))} o {} by Orient on (G('b,'c,H('d)) = 'a)
+
+= Unify {('a = G('c,'b,'c)), ('a = G('b,'c,H('d))), ('e = 'd), (G('d,F('a,'e),'f) = G('e,'f,F(G('c,H('e),H('d)),'e)))} o {} by Decompose on (H(G('d,F('a,'e),'f)) = H(G('e,'f,F(G('c,H('e),H('d)),'e))))
+
+= Unify {('a = G('c,'b,'c)), ('a = G('b,'c,H('d))), ('e = 'd), ('d = 'e), (F('a,'e) = 'f), ('f = F(G('c,H('e),H('d)),'e))} o {} by Decompose on (G('d,F('a,'e),'f) = G('e,'f,F(G('c,H('e),H('d)),'e)))
+
+= Unify {('a = G('c,'b,'c)), ('a = G('b,'c,H('d))), ('e = 'd), ('d = 'e), ('f = F('a,'e)), ('f = F(G('c,H('e),H('d)),'e))} o {} by Orient on (F('a,'e) = 'f)
+
+= Unify {('a = G('c,'b,'c)), ('a = G('b,'c,H('d))), ('d = 'd), ('f = F('a,'d)), ('f = F(G('c,H('d),H('d)),'d))} o {'e -> 'd} by Eliminate on ('e = 'd)
+
+= Unify {('a = G('c,'b,'c)), ('a = G('b,'c,H('d))), ('f = F('a,'d)), ('f = F(G('c,H('d),H('d)),'d))} o {'e -> 'd} by Delete on ('d = 'd)
+
+= Unify {(G('c,'b,'c) = G('b,'c,H('d))), ('f = F(G('c,'b,'c),'d)), ('f = F(G('c,H('d),H('d)),'d))} o {'e -> 'd, 'a -> G('c,'b,'c)} by Eliminate on ('a = G('c,'b,'c))
+
+= Unify {('c = 'b), ('b = 'c), ('c = H('d)), ('f = F(G('c,'b,'c),'d)), ('f = F(G('c,H('d),H('d)),'d))} o {'e -> 'd, 'a -> G('c,'b,'c)} by Decompose on (G('c,'b,'c) = G('b,'c,H('d)))
+
+= Unify {('c = 'b), ('b = 'c), ('c = H('d)), (F(G('c,'b,'c),'d) = F(G('c,H('d),H('d)),'d))} o {'e -> 'd, 'a -> G('c,'b,'c), 'f -> F(G('c,'b,'c),'d)} by Eliminate on ('f = F(G('c,'b,'c),'d))
+
+= Unify {('c = 'b), ('b = 'c), ('c = H('d)), (G('c,'b,'c) = G('c,H('d),H('d))), ('d = 'd)} o {'e -> 'd, 'a -> G('c,'b,'c), 'f -> F(G('c,'b,'c),'d)} by Decompose on (F(G('c,'b,'c),'d) = F(G('c,H('d),H('d)),'d))
+
+= Unify {('c = 'b), ('b = 'c), ('c = H('d)), (G('c,'b,'c) = G('c,H('d),H('d)))} o {'e -> 'd, 'a -> G('c,'b,'c), 'f -> F(G('c,'b,'c),'d)} by Delete on ('d = 'd)
+
+= Unify {('c = 'b), ('b = 'c), ('c = H('d)), ('c = 'c), ('b =H('d)), ('c = H('d))} o {'e -> 'd, 'a -> G('c,'b,'c), 'f -> F(G('c,'b,'c),'d)} by Decompose on (G('c,'b,'c) = G('c,H('d),H('d)))
+
+= Unify {('c = 'b), ('b = 'c), ('c = H('d)), ('b =H('d)), ('c = H('d))} o {'e -> 'd, 'a -> G('c,'b,'c), 'f -> F(G('c,'b,'c),'d)} by Delete on ('c = 'c)
+
+= Unify {('b = 'b), ('b = H('d)), ('b =H('d)), ('b = H('d))} o {'e -> 'd, 'a -> G('b,'b,'b), 'f -> F(G('b,'b,'b),'d), 'c->'b} by Eliminate on ('c = 'b)
+
+= Unify {('b = H('d)), ('b =H('d)), ('b = H('d))} o {'e -> 'd, 'a -> G('b,'b,'b), 'f -> F(G('b,'b,'b),'d), 'c->'b} by Delete on ('b = 'b)
+
+= Unify {} o {'e -> 'd, 'a -> G(H('d),H('d),H('d)), 'f -> F(G(H('d),H('d),H('d)),'d), 'c->H('d), 'b -> H('d)} by Eliminate on ('b = H('d))
+
+= {'e -> 'd, 'a -> G(H('d),H('d),H('d)), 'f -> F(G(H('d),H('d),H('d)),'d), 'c->H('d), 'b -> H('d)}
+
+
+

@@ -1,0 +1,42 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [5 / 5]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 5
+
+Functional_Programming-recursion_complex_list-code_ocaml_autograded-sub_list/grader program output
+---------------------
+
+
+[1 / 1] sub_list [1;1;2;1;1;4;1] [1;2;1;1;1] (correct)
+[1 / 1] map_sub_list_sol1 [] [[];[()];[();()]] (correct)
+[1 / 1] map_sub_list_sol2 [[];[()];[();()]] [] (correct)
+[1 / 1] sub_list [2;1;2;3;4;5;6;7] [1;2;3;4;5;6;7] (correct)
+[1 / 1] sub_list [2;1;1;2;2;3;3;4;4;5;5;6;6;7;7] [1;2;3;4;5;6;7] (correct)
+
+Total: [5 / 5]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for sub_list here. *)
+let rec sub_list l1 l2 = match l1 with []->(match l2 with []->true
+														| (h::hs)->false)
+									| (x::xs)->(match l2 with []->true
+															| (h::hs)-> if (x=h) then (sub_list xs hs)
+																			else (sub_list xs l2))  
+Stdout
+----------------------------------------------------
+
+

@@ -1,0 +1,37 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [2 / 2]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 2
+
+Functional_Programming-patternMatching_pair-code_ocaml_autograded-two_funs/grader program output
+---------------------
+
+
+[1 / 1] two_funs (not, abs) (true, -5) (correct)
+[1 / 1] two_funs ((fun () -> "a"), (fun ((), ()) -> [()])) ((), ((), ())) (correct)
+
+Total: [2 / 2]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for two_funs here. *)
+let two_funs (fun1, fun2) (in1, in2) = let m = fun1 in1 in
+											let n = fun2 in2 in
+												(m,n);;
+Stdout
+----------------------------------------------------
+
+

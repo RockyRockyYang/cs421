@@ -1,0 +1,59 @@
+
+midterm2 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Lexing_and_Parsing-parseTrees-parseTreeEditor_autograded-elg1a/grader program output
+---------------------
+
+
+  The starting non-terminal should be `T`
+     The tree uses the correct starting non-terminal.
+
+  Target string was `1nn`
+     The tree represents the correct string.
+
+  Total points gathered from correct non-terminals:   3
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+  The starting non-terminal should be `T`
+     The tree uses the correct starting non-terminal.
+
+  Target string was `1nn`
+     The tree represents the correct string.
+
+  Total points gathered from correct non-terminals:   3
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+{"noParseTree":false,"parseTree":{"node1510958391466":{"to":["node1510958397912","node1510958394742"],"label":"T","meta":{"xPos":"308.75","yPos":"31.9"}},"node1510958394742":{"to":[],"label":"n","meta":{"xPos":"424.75","yPos":"97.9"}},"node1510958397912":{"to":["node1510958410432","node1510958408040"],"label":"T","meta":{"xPos":"255.75","yPos":"99.9"}},"node1510958408040":{"to":[],"label":"n","meta":{"xPos":"336.75","yPos":"157.9"}},"node1510958410432":{"to":["node1510958419448"],"label":"T","meta":{"xPos":"180.75","yPos":"155.9"}},"node1510958419448":{"to":[],"label":"1","meta":{"xPos":"132.75","yPos":"215.9"}}}}
+Stdout
+----------------------------------------------------
+
+  The starting non-terminal should be `T`
+     The tree uses the correct starting non-terminal.
+
+  Target string was `1nn`
+     The tree represents the correct string.
+
+  Total points gathered from correct non-terminals:   3
+
+

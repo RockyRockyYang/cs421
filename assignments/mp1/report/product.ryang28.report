@@ -1,0 +1,35 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [1 / 1]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 1
+
+Functional_Programming-recursion_basic_patternMatching_list-code_ocaml_autograded-product/grader program output
+---------------------
+
+
+[1 / 1] product [2.; 3.; 4.] (correct)
+
+Total: [1 / 1]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for product here. *)
+let rec product l = match l with []->1.0
+								| (x::xs)->x*.(product xs)
+Stdout
+----------------------------------------------------
+
+

@@ -1,0 +1,39 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Functional_Programming-recursion_basic-code_ocaml_autograded-collatz/grader program output
+---------------------
+
+
+[1 / 1] collatz 27 (correct)
+[1 / 1] collatz 1 (correct)
+[1 / 1] collatz 256 (correct)
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for collatz here. *)
+let pro5helper n = if (n mod 2 =0) then n/2 else 3*n+1
+
+let rec collatz n = match n with 1->0
+								| n-> 1+collatz(pro5helper n)
+Stdout
+----------------------------------------------------
+
+

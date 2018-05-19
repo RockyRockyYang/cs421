@@ -1,0 +1,2519 @@
+   0  $accept : %entry% $end
+
+   1  main : expression DSEMI
+   2       | LET IDENT EQUALS expression DSEMI
+   3       | LET REC IDENT IDENT EQUALS expression DSEMI
+
+   4  expression : let_rec_in
+
+   5  let_rec_in : let_in
+   6             | LET REC IDENT IDENT EQUALS let_in IN let_in
+
+   7  let_in : fun_
+   8         | LET IDENT EQUALS fun_ IN fun_
+
+   9  fun_ : if_then_else
+  10       | FUN IDENT ARROW if_then_else
+
+  11  if_then_else : or_
+  12               | IF or_ THEN expression ELSE expression
+
+  13  or_ : and_
+  14      | or_ LOGICALOR and_
+
+  15  and_ : comparison
+  16       | and_ LOGICALAND comparison
+
+  17  comparison : double_colon
+  18             | comparison LT double_colon
+  19             | comparison GT double_colon
+  20             | comparison LEQ double_colon
+  21             | comparison GEQ double_colon
+  22             | comparison EQUALS double_colon
+  23             | comparison NEQ double_colon
+
+  24  double_colon : plus_minus
+  25               | plus_minus DCOLON double_colon
+
+  26  plus_minus : times_div
+  27             | plus_minus PLUS times_div
+  28             | plus_minus MINUS times_div
+  29             | plus_minus DPLUS times_div
+  30             | plus_minus DMINUS times_div
+  31             | plus_minus CARAT times_div
+
+  32  times_div : exponetial
+  33            | times_div TIMES exponetial
+  34            | times_div DIV exponetial
+  35            | times_div DTIMES exponetial
+  36            | times_div DDIV exponetial
+  37            | times_div MOD exponetial
+
+  38  exponetial : raise_
+  39             | raise_ EXP exponetial
+
+  40  raise_ : application
+  41         | RAISE application
+
+  42  application : unary
+  43              | application unary
+
+  44  unary : atomic_expression
+  45        | FST atomic_expression
+  46        | SND atomic_expression
+  47        | HEAD atomic_expression
+  48        | TAIL atomic_expression
+  49        | PRINT atomic_expression
+  50        | NEG atomic_expression
+
+  51  atomic_expression : INT
+  52                    | FLOAT
+  53                    | UNIT
+  54                    | TRUE
+  55                    | FALSE
+  56                    | STRING
+  57                    | NIL
+  58                    | IDENT
+  59                    | LPAREN expression RPAREN
+  60                    | LPAREN expression COMMA expression RPAREN
+  61                    | list_expression_left
+
+  62  list_expression_left : LBRAC list_expression_in
+
+  63  list_expression_in : RBRAC
+  64                     | expression RBRAC
+  65                     | expression SEMI list_expression_in
+
+  66  %entry% : '\001' main
+
+state 0
+	$accept : . %entry% $end  (0)
+
+	'\001'  shift 1
+	.  error
+
+	%entry%  goto 2
+
+
+state 1
+	%entry% : '\001' . main  (66)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 11
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	main  goto 23
+	expression  goto 24
+	let_rec_in  goto 25
+	let_in  goto 26
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 2
+	$accept : %entry% . $end  (0)
+
+	$end  accept
+
+
+state 3
+	atomic_expression : INT .  (51)
+
+	.  reduce 51
+
+
+state 4
+	atomic_expression : FLOAT .  (52)
+
+	.  reduce 52
+
+
+state 5
+	atomic_expression : STRING .  (56)
+
+	.  reduce 56
+
+
+state 6
+	atomic_expression : IDENT .  (58)
+
+	.  reduce 58
+
+
+state 7
+	atomic_expression : TRUE .  (54)
+
+	.  reduce 54
+
+
+state 8
+	atomic_expression : FALSE .  (55)
+
+	.  reduce 55
+
+
+state 9
+	unary : NEG . atomic_expression  (50)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	.  error
+
+	atomic_expression  goto 41
+	list_expression_left  goto 40
+
+
+state 10
+	atomic_expression : NIL .  (57)
+
+	.  reduce 57
+
+
+state 11
+	main : LET . IDENT EQUALS expression DSEMI  (2)
+	main : LET . REC IDENT IDENT EQUALS expression DSEMI  (3)
+	let_rec_in : LET . REC IDENT IDENT EQUALS let_in IN let_in  (6)
+	let_in : LET . IDENT EQUALS fun_ IN fun_  (8)
+
+	IDENT  shift 42
+	REC  shift 43
+	.  error
+
+
+state 12
+	if_then_else : IF . or_ THEN expression ELSE expression  (12)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	or_  goto 44
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 13
+	fun_ : FUN . IDENT ARROW if_then_else  (10)
+
+	IDENT  shift 45
+	.  error
+
+
+state 14
+	raise_ : RAISE . application  (41)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	application  goto 46
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 15
+	list_expression_left : LBRAC . list_expression_in  (62)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 47
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	RBRAC  shift 48
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	expression  goto 49
+	let_rec_in  goto 25
+	let_in  goto 26
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+	list_expression_in  goto 50
+
+
+state 16
+	atomic_expression : LPAREN . expression RPAREN  (59)
+	atomic_expression : LPAREN . expression COMMA expression RPAREN  (60)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 47
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	expression  goto 51
+	let_rec_in  goto 25
+	let_in  goto 26
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 17
+	atomic_expression : UNIT .  (53)
+
+	.  reduce 53
+
+
+state 18
+	unary : HEAD . atomic_expression  (47)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	.  error
+
+	atomic_expression  goto 52
+	list_expression_left  goto 40
+
+
+state 19
+	unary : TAIL . atomic_expression  (48)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	.  error
+
+	atomic_expression  goto 53
+	list_expression_left  goto 40
+
+
+state 20
+	unary : PRINT . atomic_expression  (49)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	.  error
+
+	atomic_expression  goto 54
+	list_expression_left  goto 40
+
+
+state 21
+	unary : FST . atomic_expression  (45)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	.  error
+
+	atomic_expression  goto 55
+	list_expression_left  goto 40
+
+
+state 22
+	unary : SND . atomic_expression  (46)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	.  error
+
+	atomic_expression  goto 56
+	list_expression_left  goto 40
+
+
+state 23
+	%entry% : '\001' main .  (66)
+
+	.  reduce 66
+
+
+state 24
+	main : expression . DSEMI  (1)
+
+	DSEMI  shift 57
+	.  error
+
+
+state 25
+	expression : let_rec_in .  (4)
+
+	.  reduce 4
+
+
+state 26
+	let_rec_in : let_in .  (5)
+
+	.  reduce 5
+
+
+state 27
+	let_in : fun_ .  (7)
+
+	.  reduce 7
+
+
+state 28
+	fun_ : if_then_else .  (9)
+
+	.  reduce 9
+
+
+state 29
+	if_then_else : or_ .  (11)
+	or_ : or_ . LOGICALOR and_  (14)
+
+	LOGICALOR  shift 58
+	SEMI  reduce 11
+	DSEMI  reduce 11
+	IN  reduce 11
+	ELSE  reduce 11
+	RBRAC  reduce 11
+	RPAREN  reduce 11
+	COMMA  reduce 11
+
+
+state 30
+	or_ : and_ .  (13)
+	and_ : and_ . LOGICALAND comparison  (16)
+
+	LOGICALAND  shift 59
+	SEMI  reduce 13
+	DSEMI  reduce 13
+	IN  reduce 13
+	THEN  reduce 13
+	ELSE  reduce 13
+	LOGICALOR  reduce 13
+	RBRAC  reduce 13
+	RPAREN  reduce 13
+	COMMA  reduce 13
+
+
+state 31
+	and_ : comparison .  (15)
+	comparison : comparison . LT double_colon  (18)
+	comparison : comparison . GT double_colon  (19)
+	comparison : comparison . LEQ double_colon  (20)
+	comparison : comparison . GEQ double_colon  (21)
+	comparison : comparison . EQUALS double_colon  (22)
+	comparison : comparison . NEQ double_colon  (23)
+
+	LT  shift 60
+	GT  shift 61
+	LEQ  shift 62
+	GEQ  shift 63
+	EQUALS  shift 64
+	NEQ  shift 65
+	SEMI  reduce 15
+	DSEMI  reduce 15
+	IN  reduce 15
+	THEN  reduce 15
+	ELSE  reduce 15
+	LOGICALAND  reduce 15
+	LOGICALOR  reduce 15
+	RBRAC  reduce 15
+	RPAREN  reduce 15
+	COMMA  reduce 15
+
+
+state 32
+	comparison : double_colon .  (17)
+
+	.  reduce 17
+
+
+state 33
+	double_colon : plus_minus .  (24)
+	double_colon : plus_minus . DCOLON double_colon  (25)
+	plus_minus : plus_minus . PLUS times_div  (27)
+	plus_minus : plus_minus . MINUS times_div  (28)
+	plus_minus : plus_minus . DPLUS times_div  (29)
+	plus_minus : plus_minus . DMINUS times_div  (30)
+	plus_minus : plus_minus . CARAT times_div  (31)
+
+	PLUS  shift 66
+	MINUS  shift 67
+	DPLUS  shift 68
+	DMINUS  shift 69
+	CARAT  shift 70
+	DCOLON  shift 71
+	LT  reduce 24
+	GT  reduce 24
+	LEQ  reduce 24
+	GEQ  reduce 24
+	EQUALS  reduce 24
+	NEQ  reduce 24
+	SEMI  reduce 24
+	DSEMI  reduce 24
+	IN  reduce 24
+	THEN  reduce 24
+	ELSE  reduce 24
+	LOGICALAND  reduce 24
+	LOGICALOR  reduce 24
+	RBRAC  reduce 24
+	RPAREN  reduce 24
+	COMMA  reduce 24
+
+
+state 34
+	plus_minus : times_div .  (26)
+	times_div : times_div . TIMES exponetial  (33)
+	times_div : times_div . DIV exponetial  (34)
+	times_div : times_div . DTIMES exponetial  (35)
+	times_div : times_div . DDIV exponetial  (36)
+	times_div : times_div . MOD exponetial  (37)
+
+	TIMES  shift 72
+	DIV  shift 73
+	DTIMES  shift 74
+	DDIV  shift 75
+	MOD  shift 76
+	PLUS  reduce 26
+	MINUS  reduce 26
+	DPLUS  reduce 26
+	DMINUS  reduce 26
+	CARAT  reduce 26
+	LT  reduce 26
+	GT  reduce 26
+	LEQ  reduce 26
+	GEQ  reduce 26
+	EQUALS  reduce 26
+	NEQ  reduce 26
+	SEMI  reduce 26
+	DSEMI  reduce 26
+	DCOLON  reduce 26
+	IN  reduce 26
+	THEN  reduce 26
+	ELSE  reduce 26
+	LOGICALAND  reduce 26
+	LOGICALOR  reduce 26
+	RBRAC  reduce 26
+	RPAREN  reduce 26
+	COMMA  reduce 26
+
+
+state 35
+	times_div : exponetial .  (32)
+
+	.  reduce 32
+
+
+state 36
+	exponetial : raise_ .  (38)
+	exponetial : raise_ . EXP exponetial  (39)
+
+	EXP  shift 77
+	PLUS  reduce 38
+	MINUS  reduce 38
+	TIMES  reduce 38
+	DIV  reduce 38
+	DPLUS  reduce 38
+	DMINUS  reduce 38
+	DTIMES  reduce 38
+	DDIV  reduce 38
+	MOD  reduce 38
+	CARAT  reduce 38
+	LT  reduce 38
+	GT  reduce 38
+	LEQ  reduce 38
+	GEQ  reduce 38
+	EQUALS  reduce 38
+	NEQ  reduce 38
+	SEMI  reduce 38
+	DSEMI  reduce 38
+	DCOLON  reduce 38
+	IN  reduce 38
+	THEN  reduce 38
+	ELSE  reduce 38
+	LOGICALAND  reduce 38
+	LOGICALOR  reduce 38
+	RBRAC  reduce 38
+	RPAREN  reduce 38
+	COMMA  reduce 38
+
+
+state 37
+	raise_ : application .  (40)
+	application : application . unary  (43)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	PLUS  reduce 40
+	MINUS  reduce 40
+	TIMES  reduce 40
+	DIV  reduce 40
+	DPLUS  reduce 40
+	DMINUS  reduce 40
+	DTIMES  reduce 40
+	DDIV  reduce 40
+	MOD  reduce 40
+	EXP  reduce 40
+	CARAT  reduce 40
+	LT  reduce 40
+	GT  reduce 40
+	LEQ  reduce 40
+	GEQ  reduce 40
+	EQUALS  reduce 40
+	NEQ  reduce 40
+	SEMI  reduce 40
+	DSEMI  reduce 40
+	DCOLON  reduce 40
+	IN  reduce 40
+	THEN  reduce 40
+	ELSE  reduce 40
+	LOGICALAND  reduce 40
+	LOGICALOR  reduce 40
+	RBRAC  reduce 40
+	RPAREN  reduce 40
+	COMMA  reduce 40
+
+	unary  goto 78
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 38
+	application : unary .  (42)
+
+	.  reduce 42
+
+
+state 39
+	unary : atomic_expression .  (44)
+
+	.  reduce 44
+
+
+state 40
+	atomic_expression : list_expression_left .  (61)
+
+	.  reduce 61
+
+
+state 41
+	unary : NEG atomic_expression .  (50)
+
+	.  reduce 50
+
+
+state 42
+	main : LET IDENT . EQUALS expression DSEMI  (2)
+	let_in : LET IDENT . EQUALS fun_ IN fun_  (8)
+
+	EQUALS  shift 79
+	.  error
+
+
+state 43
+	main : LET REC . IDENT IDENT EQUALS expression DSEMI  (3)
+	let_rec_in : LET REC . IDENT IDENT EQUALS let_in IN let_in  (6)
+
+	IDENT  shift 80
+	.  error
+
+
+state 44
+	if_then_else : IF or_ . THEN expression ELSE expression  (12)
+	or_ : or_ . LOGICALOR and_  (14)
+
+	THEN  shift 81
+	LOGICALOR  shift 58
+	.  error
+
+
+state 45
+	fun_ : FUN IDENT . ARROW if_then_else  (10)
+
+	ARROW  shift 82
+	.  error
+
+
+state 46
+	raise_ : RAISE application .  (41)
+	application : application . unary  (43)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	PLUS  reduce 41
+	MINUS  reduce 41
+	TIMES  reduce 41
+	DIV  reduce 41
+	DPLUS  reduce 41
+	DMINUS  reduce 41
+	DTIMES  reduce 41
+	DDIV  reduce 41
+	MOD  reduce 41
+	EXP  reduce 41
+	CARAT  reduce 41
+	LT  reduce 41
+	GT  reduce 41
+	LEQ  reduce 41
+	GEQ  reduce 41
+	EQUALS  reduce 41
+	NEQ  reduce 41
+	SEMI  reduce 41
+	DSEMI  reduce 41
+	DCOLON  reduce 41
+	IN  reduce 41
+	THEN  reduce 41
+	ELSE  reduce 41
+	LOGICALAND  reduce 41
+	LOGICALOR  reduce 41
+	RBRAC  reduce 41
+	RPAREN  reduce 41
+	COMMA  reduce 41
+
+	unary  goto 78
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 47
+	let_rec_in : LET . REC IDENT IDENT EQUALS let_in IN let_in  (6)
+	let_in : LET . IDENT EQUALS fun_ IN fun_  (8)
+
+	IDENT  shift 83
+	REC  shift 84
+	.  error
+
+
+state 48
+	list_expression_in : RBRAC .  (63)
+
+	.  reduce 63
+
+
+state 49
+	list_expression_in : expression . RBRAC  (64)
+	list_expression_in : expression . SEMI list_expression_in  (65)
+
+	SEMI  shift 85
+	RBRAC  shift 86
+	.  error
+
+
+state 50
+	list_expression_left : LBRAC list_expression_in .  (62)
+
+	.  reduce 62
+
+
+state 51
+	atomic_expression : LPAREN expression . RPAREN  (59)
+	atomic_expression : LPAREN expression . COMMA expression RPAREN  (60)
+
+	RPAREN  shift 87
+	COMMA  shift 88
+	.  error
+
+
+state 52
+	unary : HEAD atomic_expression .  (47)
+
+	.  reduce 47
+
+
+state 53
+	unary : TAIL atomic_expression .  (48)
+
+	.  reduce 48
+
+
+state 54
+	unary : PRINT atomic_expression .  (49)
+
+	.  reduce 49
+
+
+state 55
+	unary : FST atomic_expression .  (45)
+
+	.  reduce 45
+
+
+state 56
+	unary : SND atomic_expression .  (46)
+
+	.  reduce 46
+
+
+state 57
+	main : expression DSEMI .  (1)
+
+	.  reduce 1
+
+
+state 58
+	or_ : or_ LOGICALOR . and_  (14)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	and_  goto 89
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 59
+	and_ : and_ LOGICALAND . comparison  (16)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	comparison  goto 90
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 60
+	comparison : comparison LT . double_colon  (18)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	double_colon  goto 91
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 61
+	comparison : comparison GT . double_colon  (19)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	double_colon  goto 92
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 62
+	comparison : comparison LEQ . double_colon  (20)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	double_colon  goto 93
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 63
+	comparison : comparison GEQ . double_colon  (21)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	double_colon  goto 94
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 64
+	comparison : comparison EQUALS . double_colon  (22)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	double_colon  goto 95
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 65
+	comparison : comparison NEQ . double_colon  (23)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	double_colon  goto 96
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 66
+	plus_minus : plus_minus PLUS . times_div  (27)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	times_div  goto 97
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 67
+	plus_minus : plus_minus MINUS . times_div  (28)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	times_div  goto 98
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 68
+	plus_minus : plus_minus DPLUS . times_div  (29)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	times_div  goto 99
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 69
+	plus_minus : plus_minus DMINUS . times_div  (30)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	times_div  goto 100
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 70
+	plus_minus : plus_minus CARAT . times_div  (31)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	times_div  goto 101
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 71
+	double_colon : plus_minus DCOLON . double_colon  (25)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	double_colon  goto 102
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 72
+	times_div : times_div TIMES . exponetial  (33)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	exponetial  goto 103
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 73
+	times_div : times_div DIV . exponetial  (34)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	exponetial  goto 104
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 74
+	times_div : times_div DTIMES . exponetial  (35)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	exponetial  goto 105
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 75
+	times_div : times_div DDIV . exponetial  (36)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	exponetial  goto 106
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 76
+	times_div : times_div MOD . exponetial  (37)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	exponetial  goto 107
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 77
+	exponetial : raise_ EXP . exponetial  (39)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	exponetial  goto 108
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 78
+	application : application unary .  (43)
+
+	.  reduce 43
+
+
+state 79
+	main : LET IDENT EQUALS . expression DSEMI  (2)
+	let_in : LET IDENT EQUALS . fun_ IN fun_  (8)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 47
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	expression  goto 109
+	let_rec_in  goto 25
+	let_in  goto 26
+	fun_  goto 110
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 80
+	main : LET REC IDENT . IDENT EQUALS expression DSEMI  (3)
+	let_rec_in : LET REC IDENT . IDENT EQUALS let_in IN let_in  (6)
+
+	IDENT  shift 111
+	.  error
+
+
+state 81
+	if_then_else : IF or_ THEN . expression ELSE expression  (12)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 47
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	expression  goto 112
+	let_rec_in  goto 25
+	let_in  goto 26
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 82
+	fun_ : FUN IDENT ARROW . if_then_else  (10)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	IF  shift 12
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	if_then_else  goto 113
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 83
+	let_in : LET IDENT . EQUALS fun_ IN fun_  (8)
+
+	EQUALS  shift 114
+	.  error
+
+
+state 84
+	let_rec_in : LET REC . IDENT IDENT EQUALS let_in IN let_in  (6)
+
+	IDENT  shift 115
+	.  error
+
+
+state 85
+	list_expression_in : expression SEMI . list_expression_in  (65)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 47
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	RBRAC  shift 48
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	expression  goto 49
+	let_rec_in  goto 25
+	let_in  goto 26
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+	list_expression_in  goto 116
+
+
+state 86
+	list_expression_in : expression RBRAC .  (64)
+
+	.  reduce 64
+
+
+state 87
+	atomic_expression : LPAREN expression RPAREN .  (59)
+
+	.  reduce 59
+
+
+state 88
+	atomic_expression : LPAREN expression COMMA . expression RPAREN  (60)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 47
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	expression  goto 117
+	let_rec_in  goto 25
+	let_in  goto 26
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 89
+	or_ : or_ LOGICALOR and_ .  (14)
+	and_ : and_ . LOGICALAND comparison  (16)
+
+	LOGICALAND  shift 59
+	SEMI  reduce 14
+	DSEMI  reduce 14
+	IN  reduce 14
+	THEN  reduce 14
+	ELSE  reduce 14
+	LOGICALOR  reduce 14
+	RBRAC  reduce 14
+	RPAREN  reduce 14
+	COMMA  reduce 14
+
+
+state 90
+	and_ : and_ LOGICALAND comparison .  (16)
+	comparison : comparison . LT double_colon  (18)
+	comparison : comparison . GT double_colon  (19)
+	comparison : comparison . LEQ double_colon  (20)
+	comparison : comparison . GEQ double_colon  (21)
+	comparison : comparison . EQUALS double_colon  (22)
+	comparison : comparison . NEQ double_colon  (23)
+
+	LT  shift 60
+	GT  shift 61
+	LEQ  shift 62
+	GEQ  shift 63
+	EQUALS  shift 64
+	NEQ  shift 65
+	SEMI  reduce 16
+	DSEMI  reduce 16
+	IN  reduce 16
+	THEN  reduce 16
+	ELSE  reduce 16
+	LOGICALAND  reduce 16
+	LOGICALOR  reduce 16
+	RBRAC  reduce 16
+	RPAREN  reduce 16
+	COMMA  reduce 16
+
+
+state 91
+	comparison : comparison LT double_colon .  (18)
+
+	.  reduce 18
+
+
+state 92
+	comparison : comparison GT double_colon .  (19)
+
+	.  reduce 19
+
+
+state 93
+	comparison : comparison LEQ double_colon .  (20)
+
+	.  reduce 20
+
+
+state 94
+	comparison : comparison GEQ double_colon .  (21)
+
+	.  reduce 21
+
+
+state 95
+	comparison : comparison EQUALS double_colon .  (22)
+
+	.  reduce 22
+
+
+state 96
+	comparison : comparison NEQ double_colon .  (23)
+
+	.  reduce 23
+
+
+state 97
+	plus_minus : plus_minus PLUS times_div .  (27)
+	times_div : times_div . TIMES exponetial  (33)
+	times_div : times_div . DIV exponetial  (34)
+	times_div : times_div . DTIMES exponetial  (35)
+	times_div : times_div . DDIV exponetial  (36)
+	times_div : times_div . MOD exponetial  (37)
+
+	TIMES  shift 72
+	DIV  shift 73
+	DTIMES  shift 74
+	DDIV  shift 75
+	MOD  shift 76
+	PLUS  reduce 27
+	MINUS  reduce 27
+	DPLUS  reduce 27
+	DMINUS  reduce 27
+	CARAT  reduce 27
+	LT  reduce 27
+	GT  reduce 27
+	LEQ  reduce 27
+	GEQ  reduce 27
+	EQUALS  reduce 27
+	NEQ  reduce 27
+	SEMI  reduce 27
+	DSEMI  reduce 27
+	DCOLON  reduce 27
+	IN  reduce 27
+	THEN  reduce 27
+	ELSE  reduce 27
+	LOGICALAND  reduce 27
+	LOGICALOR  reduce 27
+	RBRAC  reduce 27
+	RPAREN  reduce 27
+	COMMA  reduce 27
+
+
+state 98
+	plus_minus : plus_minus MINUS times_div .  (28)
+	times_div : times_div . TIMES exponetial  (33)
+	times_div : times_div . DIV exponetial  (34)
+	times_div : times_div . DTIMES exponetial  (35)
+	times_div : times_div . DDIV exponetial  (36)
+	times_div : times_div . MOD exponetial  (37)
+
+	TIMES  shift 72
+	DIV  shift 73
+	DTIMES  shift 74
+	DDIV  shift 75
+	MOD  shift 76
+	PLUS  reduce 28
+	MINUS  reduce 28
+	DPLUS  reduce 28
+	DMINUS  reduce 28
+	CARAT  reduce 28
+	LT  reduce 28
+	GT  reduce 28
+	LEQ  reduce 28
+	GEQ  reduce 28
+	EQUALS  reduce 28
+	NEQ  reduce 28
+	SEMI  reduce 28
+	DSEMI  reduce 28
+	DCOLON  reduce 28
+	IN  reduce 28
+	THEN  reduce 28
+	ELSE  reduce 28
+	LOGICALAND  reduce 28
+	LOGICALOR  reduce 28
+	RBRAC  reduce 28
+	RPAREN  reduce 28
+	COMMA  reduce 28
+
+
+state 99
+	plus_minus : plus_minus DPLUS times_div .  (29)
+	times_div : times_div . TIMES exponetial  (33)
+	times_div : times_div . DIV exponetial  (34)
+	times_div : times_div . DTIMES exponetial  (35)
+	times_div : times_div . DDIV exponetial  (36)
+	times_div : times_div . MOD exponetial  (37)
+
+	TIMES  shift 72
+	DIV  shift 73
+	DTIMES  shift 74
+	DDIV  shift 75
+	MOD  shift 76
+	PLUS  reduce 29
+	MINUS  reduce 29
+	DPLUS  reduce 29
+	DMINUS  reduce 29
+	CARAT  reduce 29
+	LT  reduce 29
+	GT  reduce 29
+	LEQ  reduce 29
+	GEQ  reduce 29
+	EQUALS  reduce 29
+	NEQ  reduce 29
+	SEMI  reduce 29
+	DSEMI  reduce 29
+	DCOLON  reduce 29
+	IN  reduce 29
+	THEN  reduce 29
+	ELSE  reduce 29
+	LOGICALAND  reduce 29
+	LOGICALOR  reduce 29
+	RBRAC  reduce 29
+	RPAREN  reduce 29
+	COMMA  reduce 29
+
+
+state 100
+	plus_minus : plus_minus DMINUS times_div .  (30)
+	times_div : times_div . TIMES exponetial  (33)
+	times_div : times_div . DIV exponetial  (34)
+	times_div : times_div . DTIMES exponetial  (35)
+	times_div : times_div . DDIV exponetial  (36)
+	times_div : times_div . MOD exponetial  (37)
+
+	TIMES  shift 72
+	DIV  shift 73
+	DTIMES  shift 74
+	DDIV  shift 75
+	MOD  shift 76
+	PLUS  reduce 30
+	MINUS  reduce 30
+	DPLUS  reduce 30
+	DMINUS  reduce 30
+	CARAT  reduce 30
+	LT  reduce 30
+	GT  reduce 30
+	LEQ  reduce 30
+	GEQ  reduce 30
+	EQUALS  reduce 30
+	NEQ  reduce 30
+	SEMI  reduce 30
+	DSEMI  reduce 30
+	DCOLON  reduce 30
+	IN  reduce 30
+	THEN  reduce 30
+	ELSE  reduce 30
+	LOGICALAND  reduce 30
+	LOGICALOR  reduce 30
+	RBRAC  reduce 30
+	RPAREN  reduce 30
+	COMMA  reduce 30
+
+
+state 101
+	plus_minus : plus_minus CARAT times_div .  (31)
+	times_div : times_div . TIMES exponetial  (33)
+	times_div : times_div . DIV exponetial  (34)
+	times_div : times_div . DTIMES exponetial  (35)
+	times_div : times_div . DDIV exponetial  (36)
+	times_div : times_div . MOD exponetial  (37)
+
+	TIMES  shift 72
+	DIV  shift 73
+	DTIMES  shift 74
+	DDIV  shift 75
+	MOD  shift 76
+	PLUS  reduce 31
+	MINUS  reduce 31
+	DPLUS  reduce 31
+	DMINUS  reduce 31
+	CARAT  reduce 31
+	LT  reduce 31
+	GT  reduce 31
+	LEQ  reduce 31
+	GEQ  reduce 31
+	EQUALS  reduce 31
+	NEQ  reduce 31
+	SEMI  reduce 31
+	DSEMI  reduce 31
+	DCOLON  reduce 31
+	IN  reduce 31
+	THEN  reduce 31
+	ELSE  reduce 31
+	LOGICALAND  reduce 31
+	LOGICALOR  reduce 31
+	RBRAC  reduce 31
+	RPAREN  reduce 31
+	COMMA  reduce 31
+
+
+state 102
+	double_colon : plus_minus DCOLON double_colon .  (25)
+
+	.  reduce 25
+
+
+state 103
+	times_div : times_div TIMES exponetial .  (33)
+
+	.  reduce 33
+
+
+state 104
+	times_div : times_div DIV exponetial .  (34)
+
+	.  reduce 34
+
+
+state 105
+	times_div : times_div DTIMES exponetial .  (35)
+
+	.  reduce 35
+
+
+state 106
+	times_div : times_div DDIV exponetial .  (36)
+
+	.  reduce 36
+
+
+state 107
+	times_div : times_div MOD exponetial .  (37)
+
+	.  reduce 37
+
+
+state 108
+	exponetial : raise_ EXP exponetial .  (39)
+
+	.  reduce 39
+
+
+state 109
+	main : LET IDENT EQUALS expression . DSEMI  (2)
+
+	DSEMI  shift 118
+	.  error
+
+
+state 110
+	let_in : fun_ .  (7)
+	let_in : LET IDENT EQUALS fun_ . IN fun_  (8)
+
+	IN  shift 119
+	DSEMI  reduce 7
+
+
+state 111
+	main : LET REC IDENT IDENT . EQUALS expression DSEMI  (3)
+	let_rec_in : LET REC IDENT IDENT . EQUALS let_in IN let_in  (6)
+
+	EQUALS  shift 120
+	.  error
+
+
+state 112
+	if_then_else : IF or_ THEN expression . ELSE expression  (12)
+
+	ELSE  shift 121
+	.  error
+
+
+state 113
+	fun_ : FUN IDENT ARROW if_then_else .  (10)
+
+	.  reduce 10
+
+
+state 114
+	let_in : LET IDENT EQUALS . fun_ IN fun_  (8)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	fun_  goto 122
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 115
+	let_rec_in : LET REC IDENT . IDENT EQUALS let_in IN let_in  (6)
+
+	IDENT  shift 123
+	.  error
+
+
+state 116
+	list_expression_in : expression SEMI list_expression_in .  (65)
+
+	.  reduce 65
+
+
+state 117
+	atomic_expression : LPAREN expression COMMA expression . RPAREN  (60)
+
+	RPAREN  shift 124
+	.  error
+
+
+state 118
+	main : LET IDENT EQUALS expression DSEMI .  (2)
+
+	.  reduce 2
+
+
+state 119
+	let_in : LET IDENT EQUALS fun_ IN . fun_  (8)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	fun_  goto 125
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 120
+	main : LET REC IDENT IDENT EQUALS . expression DSEMI  (3)
+	let_rec_in : LET REC IDENT IDENT EQUALS . let_in IN let_in  (6)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 47
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	expression  goto 126
+	let_rec_in  goto 25
+	let_in  goto 127
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 121
+	if_then_else : IF or_ THEN expression ELSE . expression  (12)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 47
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	expression  goto 128
+	let_rec_in  goto 25
+	let_in  goto 26
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 122
+	let_in : LET IDENT EQUALS fun_ . IN fun_  (8)
+
+	IN  shift 119
+	.  error
+
+
+state 123
+	let_rec_in : LET REC IDENT IDENT . EQUALS let_in IN let_in  (6)
+
+	EQUALS  shift 129
+	.  error
+
+
+state 124
+	atomic_expression : LPAREN expression COMMA expression RPAREN .  (60)
+
+	.  reduce 60
+
+
+state 125
+	let_in : LET IDENT EQUALS fun_ IN fun_ .  (8)
+
+	.  reduce 8
+
+
+state 126
+	main : LET REC IDENT IDENT EQUALS expression . DSEMI  (3)
+
+	DSEMI  shift 130
+	.  error
+
+
+state 127
+	let_rec_in : let_in .  (5)
+	let_rec_in : LET REC IDENT IDENT EQUALS let_in . IN let_in  (6)
+
+	IN  shift 131
+	DSEMI  reduce 5
+
+
+state 128
+	if_then_else : IF or_ THEN expression ELSE expression .  (12)
+
+	.  reduce 12
+
+
+state 129
+	let_rec_in : LET REC IDENT IDENT EQUALS . let_in IN let_in  (6)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 132
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	let_in  goto 133
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 130
+	main : LET REC IDENT IDENT EQUALS expression DSEMI .  (3)
+
+	.  reduce 3
+
+
+state 131
+	let_rec_in : LET REC IDENT IDENT EQUALS let_in IN . let_in  (6)
+
+	INT  shift 3
+	FLOAT  shift 4
+	STRING  shift 5
+	IDENT  shift 6
+	TRUE  shift 7
+	FALSE  shift 8
+	NEG  shift 9
+	NIL  shift 10
+	LET  shift 132
+	IF  shift 12
+	FUN  shift 13
+	RAISE  shift 14
+	LBRAC  shift 15
+	LPAREN  shift 16
+	UNIT  shift 17
+	HEAD  shift 18
+	TAIL  shift 19
+	PRINT  shift 20
+	FST  shift 21
+	SND  shift 22
+	.  error
+
+	let_in  goto 134
+	fun_  goto 27
+	if_then_else  goto 28
+	or_  goto 29
+	and_  goto 30
+	comparison  goto 31
+	double_colon  goto 32
+	plus_minus  goto 33
+	times_div  goto 34
+	exponetial  goto 35
+	raise_  goto 36
+	application  goto 37
+	unary  goto 38
+	atomic_expression  goto 39
+	list_expression_left  goto 40
+
+
+state 132
+	let_in : LET . IDENT EQUALS fun_ IN fun_  (8)
+
+	IDENT  shift 83
+	.  error
+
+
+state 133
+	let_rec_in : LET REC IDENT IDENT EQUALS let_in . IN let_in  (6)
+
+	IN  shift 131
+	.  error
+
+
+state 134
+	let_rec_in : LET REC IDENT IDENT EQUALS let_in IN let_in .  (6)
+
+	.  reduce 6
+
+
+60 terminals, 21 nonterminals
+67 grammar rules, 135 states

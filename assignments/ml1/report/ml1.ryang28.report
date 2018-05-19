@@ -1,0 +1,14 @@
+ml1 report for ryang28:
+
+                                                            SCORE     OUT OF
+Variable Declaration
+   greetings                                                    1         1
+Basic Functions with Integer Arithmetic
+   myFirstFun                                                   2         2
+Basic Functions with Float Arithmetic
+   divide_e_by                                                  2         2
+Basic Programming, Conditional Functions with Printing
+   salute                                                       3         3
+Basic Programming, Conditional Functions of Two Args
+   has_smallest_square                                          3         3
+Total:                                                       11        11

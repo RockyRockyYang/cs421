@@ -1,0 +1,36 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [3 / 3]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 3
+
+Functional_Programming-recursion_basic_patternMatching_list-code_ocaml_autograded-upto/grader program output
+---------------------
+
+
+[1 / 1] upto (-5) (correct)
+[1 / 1] upto 0 (correct)
+[1 / 1] upto 8 (correct)
+
+Total: [3 / 3]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for upto here. *)
+let rec upto n = if n<0 then [] else (upto (n-1) @ [n])
+Stdout
+----------------------------------------------------
+
+

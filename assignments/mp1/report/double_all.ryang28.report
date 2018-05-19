@@ -1,0 +1,35 @@
+
+mp1 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [1 / 1]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 1
+
+Functional_Programming-recursion_basic_patternMatching_list-code_ocaml_autograded-double_all/grader program output
+---------------------
+
+
+[1 / 1] double_all [1.5; -3.0; 0.; 2.2] (correct)
+
+Total: [1 / 1]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+(* Put code for double_all here. *)
+let rec double_all l = match l with []->[]
+									| (x::xs)->((2.0*.x):: double_all xs)
+Stdout
+----------------------------------------------------
+
+

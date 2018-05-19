@@ -1,0 +1,30 @@
+mp1 report for ryang28:
+
+                                                            SCORE     OUT OF
+Pattern Matching
+   closer_to_origin                                             2         2
+Pattern Matching
+   swap_eq                                                      2         2
+Pattern Matching
+   two_funs                                                     2         2
+Integer Recursion
+   ackermann                                                    3         3
+Integer Recursion
+   collatz                                                      3         3
+Integer Recursion
+   delannoy                                                     3         3
+Integer Recursion
+   upto                                                         3         3
+Integer Recursion
+   upuntil                                                      4         4
+Basic List Recursion
+   product                                                      2         2
+Basic List Recursion
+   double_all                                                   2         2
+Basic List Recursion
+   pair_with_all                                                3         3
+More Complex List Recursion
+   insert_by                                                    4         4
+More Complex List Recursion
+   sub_list                                                     5         5
+Total:                                                       38        38

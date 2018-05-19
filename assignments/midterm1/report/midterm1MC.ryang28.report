@@ -1,0 +1,74 @@
+midterm1-mc grade report for ryang28
+================================
+Last Updated: Thu, 19 Oct 2017 20:45:58
+
+================================
+= Point Breakdown
+================================
+
+6 of 6 points for 	Functional_Programming-continuationPassingStyle_CPSTransformToOCaml-multipleTF_autograded-double_even_b
+6 of 6 points for 	Functional_Programming-continuationPassingStyle_CPSTransformToOCaml-multipleTF_autograded-filter_b
+6 of 6 points for 	Functional_Programming-continuationPassingStyle_CPSTransformToOCaml-multipleTF_autograded-square_b
+6 of 6 points for 	Functional_Programming-orderOfEvaluation_ocaml-multipleTF_autograded-elg1b1
+3 of 3 points for 	Functional_Programming-typeErrors_ocaml-multipleTF_autograded-elg1d2
+3 of 3 points for 	Functional_Programming-variableRedeclaration_ocaml-multipleTF_autograded-elg1c1
+3 of 3 points for 	Functional_Programming-variableScope_ocaml-multipleTF_autograded-sej1a2
+
+Total Score: 33 of 33 points
+
+Total                 => 33
+================================
+= Your Answers
+================================
+
+Your answer for Functional_Programming-continuationPassingStyle_CPSTransformToOCaml-multipleTF_autograded-double_even_b was:     
+{
+    "double_even_csp": "True", 
+    "double_even_right_csp": "False", 
+    "double_even_value": "True"
+}
+
+Your answer for Functional_Programming-continuationPassingStyle_CPSTransformToOCaml-multipleTF_autograded-filter_b was:     
+{
+    "filterk_csp": "False", 
+    "filterk_right_csp": "False", 
+    "filterk_value": "True"
+}
+
+Your answer for Functional_Programming-continuationPassingStyle_CPSTransformToOCaml-multipleTF_autograded-square_b was:     
+{
+    "squarek_csp": "True", 
+    "squarek_right_csp": "False", 
+    "squarek_value": "False"
+}
+
+Your answer for Functional_Programming-orderOfEvaluation_ocaml-multipleTF_autograded-elg1b1 was:     
+{
+    "d19": "True", 
+    "d70": "False", 
+    "gonce": "False", 
+    "gright": "True", 
+    "gthrice": "True", 
+    "gtwice": "False"
+}
+
+Your answer for Functional_Programming-typeErrors_ocaml-multipleTF_autograded-elg1d2 was:     
+{
+    "bad_c": "True", 
+    "c_prob": "False", 
+    "prob_at_2": "False"
+}
+
+Your answer for Functional_Programming-variableRedeclaration_ocaml-multipleTF_autograded-elg1c1 was:     
+{
+    "bad_f": "True", 
+    "c_prob": "False", 
+    "hof_h": "False"
+}
+
+Your answer for Functional_Programming-variableScope_ocaml-multipleTF_autograded-sej1a2 was:     
+{
+    "a_prob": "False", 
+    "b_val": "False", 
+    "hof_a": "True"
+}

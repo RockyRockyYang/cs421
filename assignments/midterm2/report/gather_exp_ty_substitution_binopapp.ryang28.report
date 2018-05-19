@@ -1,0 +1,96 @@
+
+midterm2 grade report for ryang28
+================================
+
+*Regular Problems:
+Grading script score  => [20 / 20]
+Late Penalty          => 0
+Point adjustments     =>
+Total                 => 20
+
+Typing_and_Type_Systems-polymorphicTypeDerivations-code_ocaml_autograded-gather_exp_ty_substitution_binopapp/grader program output
+---------------------
+
+
+[1 / 1] infer2_exp env0 bin_exp1 (correct)
+[1 / 1] infer2_exp env0 int_binop_exp (correct)
+[1 / 1] infer2_exp env0 float_binop_exp (correct)
+[1 / 1] infer2_exp env0 rem_binop_exp (correct)
+[1 / 1] infer2_exp env2 poly_binop_exp (correct)
+[1 / 1] infer2_exp env0 fail_bin1 (correct)
+[1 / 1] canon_gather env3 fail_bin2 fail_bin2_ty (correct)
+[1 / 1] canon_gather env3 fail_bin2 (mk_pair_ty int_ty int_ty) (correct)
+[1 / 1] canon_gather env2 fail_bin3 fail_bin3_ty (correct)
+[1 / 1] infer2_exp env0 rem_binop_exp (correct)
+[1 / 1] infer2_exp env0 fun_exp1 (correct)
+[1 / 1] infer2_exp [("x",([], bool_ty))] fun_exp1 (correct)
+[1 / 1] infer2_exp [("f",([],int_ty))] fun_exp2 (correct)
+[1 / 1] infer2_exp [("zyz",([],int_ty))] fun_exp4 (correct)
+[1 / 1] infer2_exp env0 fun_exp6 (correct)
+[1 / 1] infer2_exp env0 app_exp1 (correct)
+[1 / 1] infer2_exp env0 letin_exp1 (correct)
+[1 / 1] infer2_exp env0 letin_exp7 (correct)
+[1 / 1] infer2_exp env0 (BinOpAppExp (ConsOp, letin_exp7, ConstExp NilConst)) (correct)
+[1 / 1] infer2_exp env0 letrecin_exp1 (correct)
+
+Total: [20 / 20]
+Extra: [0 / 0]
+
+Additional output from compiling students code (may be empty)
+----------------------------------------------------
+
+
+
+Student's code (with comments and point adjustments)
+----------------------------------------------------
+
+
+open Common
+open Plsolution
+(* Leave these two lines here! *)
+(* Put code for app at the bottom, after removing the raise. *)
+
+let rec gather_exp_ty_substitution gamma exp tau =
+    let judgment = ExpJudgment(gamma, exp, tau) in
+    match exp
+    with ConstExp c ->
+         let tau' = const_signature c in
+         (match unify [(tau, freshInstance tau')]
+          with None       -> None
+             | Some sigma -> Some(Proof([],judgment), sigma))
+      | VarExp x -> gather_exp_ty_substitution_VarExp x gamma tau gather_exp_ty_substitution
+      | MonOpAppExp (monop, e1) ->
+            gather_exp_ty_substitution_MonOpAppExp (monop, e1) gamma tau gather_exp_ty_substitution
+      | IfExp (e1, e2, e3) -> gather_exp_ty_substitution_IfExp (e1, e2, e3) gamma tau gather_exp_ty_substitution
+      | FunExp (x, e) -> gather_exp_ty_substitution_FunExp (x, e) gamma tau gather_exp_ty_substitution
+      | AppExp (e1, e2) -> gather_exp_ty_substitution_AppExp (e1, e2) gamma tau gather_exp_ty_substitution
+      | RaiseExp e -> gather_exp_ty_substitution_RaiseExp e gamma tau gather_exp_ty_substitution 
+      | LetInExp (x, e1, e2) -> gather_exp_ty_substitution_LetInExp (x, e1, e2) gamma tau gather_exp_ty_substitution 
+      | LetRecInExp (f, x, e1, e2) ->
+            gather_exp_ty_substitution_LetRecInExp (f, x, e1, e2) gamma tau gather_exp_ty_substitution 
+      | TryWithExp (e, intopt1, e1, match_list) ->
+            gather_exp_ty_substitution_TryWithExp (e, intopt1, e1,
+match_list) gamma tau gather_exp_ty_substitution
+
+
+
+      |  BinOpAppExp (binop, e1,e2) -> 
+            let tau' = binop_signature binop in
+			let tau1 = fresh() in
+			let tau2 = fresh() in
+			(match gather_exp_ty_substitution gamma e1 tau1 
+				with None -> None
+				| Some(pf1, sigma1)->
+					(match gather_exp_ty_substitution (env_lift_subst sigma1 gamma) e2 tau2
+						with None -> None
+						| Some(pf2, sigma2)->
+							let sigma21 = subst_compose sigma2 sigma1 in
+							(match unify[monoTy_lift_subst sigma21 (mk_fun_ty tau1 (mk_fun_ty tau2 tau)), freshInstance tau'] 
+								with None -> None
+								| Some sigma3 -> Some(Proof(pf1::pf2::[],judgment), subst_compose sigma3 sigma21))))
+------------------------------------------------------
+
+Stdout
+----------------------------------------------------
+
+
